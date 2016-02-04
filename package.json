@@ -1,0 +1,16 @@
+{
+  "name": "fizz-buzz-functional",
+  "version": "0.0.1",
+  "description": "Functional jerking with JavaScript like it is Lisp.",
+  "main": "fizz-buzz-functional.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tematema/FizzBuzz.git"
+  },
+  "author": "Akhtyam Sakaev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tematema/FizzBuzz/issues"
+  },
+  "homepage": "https://github.com/tematema/FizzBuzz#readme"
+}
