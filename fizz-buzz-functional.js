@@ -37,30 +37,31 @@ function generateArray(first, last) {
   return recursion(first, last, []);
 }
 
+// TODO: find best way to check if list is empty
+function isArrayEmpty(list) {
+  return list.length === 0;
+}
+
 
 /**
- * @param  {Array.{number}} inputList
- * @return {Array.{string}}
+ * @param  {Array.<number>} inputList
+ * @return {Array.<string>}
  */
 function fizzBuzz(inputList) {
-  console.log('x');
 
+  // TODO: checkArrayType every element
 
+  /**
+   * @param {number} dividend
+   * @param {number} divisor
+   * @return {boolean}
+   */
   function isModEqualZero(dividend, divisor) {
-    console.log('divident: ' + dividend);
-    console.log('divisor: ' + divisor);
-
     if (divisor === 0) {
       return false;
     }
 
-    console.log('res: ' + ((dividend % divisor) === 0));
     return (dividend % divisor) === 0;
-  }
-
-  // TODO: find best way to check if list is empty
-  function isArrayEmpty(list) {
-    return list.length === 0;
   }
 
   // TODO: jerk with list pop/push/shift to get first element
@@ -69,71 +70,57 @@ function fizzBuzz(inputList) {
   }
 
 
-  function recursion1(arrNumbers, resultList) {
-    console.log('arrNumbers: ', arrNumbers);
-    console.log('resultList: ', resultList);
+  /**
+   * @param {Array.<number>} inputList
+   * @param {Array.<string>} resultList
+   * @return {Array.<string>}
+   */
+  function fizzBuzzRecursion(inputList, resultList) {
 
-
-
-    if (isArrayEmpty(arrNumbers)) {
+    if (isArrayEmpty(inputList)) {
       return resultList;
     }
 
-    console.log('next');
-    console.log('item1a: ' + getFirstArrayElement(arrNumbers));
-    console.log('item1b: ' + getFirstArrayElement(arrNumbers));
-
-    if (isModEqualZero(getFirstArrayElement(arrNumbers), 3) && isModEqualZero(getFirstArrayElement(arrNumbers), 5)) {
-
-      console.log('1st');
+    if (isModEqualZero(getFirstArrayElement(inputList), 3) &&
+        isModEqualZero(getFirstArrayElement(inputList), 5)) {
 
       resultList.push('FizzBuzz');
-      arrNumbers.shift();
-      return recursion1(arrNumbers, resultList);
+      inputList.shift();
+      return fizzBuzzRecursion(inputList, resultList);
     }
 
-    if (isModEqualZero(getFirstArrayElement(arrNumbers), 3)) {
-      console.log('2st');
-
+    if (isModEqualZero(getFirstArrayElement(inputList), 3)) {
       resultList.push('Fizz');
-      return recursion1(arrNumbers, resultList);
+      inputList.shift();
+      return fizzBuzzRecursion(inputList, resultList);
     }
 
-    if (isModEqualZero(getFirstArrayElement(arrNumbers), 5)) {
-      console.log('3st');
+    if (isModEqualZero(getFirstArrayElement(inputList), 5)) {
       resultList.push('Buzz');
-      return recursion1(arrNumbers, resultList);
+      inputList.shift();
+      return fizzBuzzRecursion(inputList, resultList);
     }
 
-    console.log('BEFORE N: ', arrNumbers);
-    console.log('BEFORE S:', resultList);
-
-    resultList.push(arrNumbers.shift());
-
-    console.log('AFTER N: ', arrNumbers);
-    console.log('AFTER S:', resultList);
-    process.exit(1);
-
-    return recursion1(arrNumbers, resultList);
+    resultList.push(String(inputList.shift()));
+    return fizzBuzzRecursion(inputList, resultList);
   }
 
-  return recursion1(inputList, []);
+  return fizzBuzzRecursion(inputList, []);
 }
 
 
 /**
- * @param  {Array.{string}} array
+ * @param {Array.<string>} array
+ * @return {number}
  */
-function printArray(array) {
-  for (var i = 0; i < array.length; i++) {
-    console.log(array[i]);
+function printList(array) {
+  if (isArrayEmpty(array)) {
+    return 0;
   }
+
+  console.log(array.shift());
+  return printList(array);
 }
 
-// printArray(fizzBuzz(getArray(1, 100)));
-//
-var aa = generateArray(1, 10);
-console.log(aa);
 
-var bb = fizzBuzz(aa);
-console.log(bb);
+printList(fizzBuzz(generateArray(1, 10)));
