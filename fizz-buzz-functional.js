@@ -12,16 +12,16 @@ function generateArray(first, last) {
    * @param {Array.<number>} list
    * @return {Array.<number>}
    */
-  function recursion(head, tail, list) {
-    if (head <= tail) {
-      list.push(head);
-      return recursion(++head, tail, list);
-    } else {
+  function arrayRecursion(head, tail, list) {
+    if (head > tail) {
       return list;
     }
+
+    list.push(head);
+    return arrayRecursion(++head, tail, list);
   }
 
-  return recursion(first, last, []);
+  return arrayRecursion(first, last, []);
 }
 
 // TODO: find best way to check if list is empty
