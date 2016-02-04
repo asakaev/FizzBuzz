@@ -1,23 +1,10 @@
 
 /**
- * @param {*} val
- * @param {string} type
- */
-function checkType(val, type) {
-  if (!(typeof val === type)) {
-    throw new Error('Wrong type');
-  }
-}
-
-
-/**
  * @param {number} first
  * @param {number} last
  * @return {Array.<number>}
  */
 function generateArray(first, last) {
-  checkType(first, 'number');
-  checkType(last, 'number');
 
   /**
    * @param {number} head
@@ -49,20 +36,15 @@ function isArrayEmpty(list) {
  */
 function fizzBuzz(inputList) {
 
-  // TODO: checkArrayType every element
-
   /**
    * @param {number} dividend
    * @param {number} divisor
    * @return {boolean}
    */
   function isModEqualZero(dividend, divisor) {
-    if (divisor === 0) {
-      return false;
-    }
-
     return (dividend % divisor) === 0;
   }
+
 
   // TODO: jerk with list pop/push/shift to get first element
   function getFirstArrayElement(list) {
@@ -123,4 +105,4 @@ function printList(array) {
 }
 
 
-printList(fizzBuzz(generateArray(1, 10)));
+printList(fizzBuzz(generateArray(1, 100)));
